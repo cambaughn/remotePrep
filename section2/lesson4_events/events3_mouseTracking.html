@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style media="screen">
+      img {
+        position: fixed;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="http://bestanimations.com/Animals/Mammals/Dogs/puppies/cute-funny-dog-puppy-animated-gif.gif" alt="Puppy" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      let clickEvent = false
+      $(document).mousedown(function(event) {
+         clickEvent = true
+         $(document).mousemove(function(event) {
+          if (clickEvent === true) {
+          $('html').css('cursor', 'none')
+          $('img').css({'left': event.pageX, 'top': event.pageY})
+          }
+        })
+      })
+
+
+      $(document).mouseup(function(event) {
+        if (clickEvent === true) {
+          clickEvent = false
+          $('html').css('cursor', 'auto')
+          $('img').css({'left': event.pageX, 'top': event.pageY})
+        }
+      })
+    </script>
+  </body>
+</html>
+
+<!--
+How can we inspect the event object in the console? What properties and methods does it have?
+Do click events and mouseover events get arguments passed into each invocation of their event handler functions as well? Do they have the same properties?
+Create a small position: fixed <img> that follows the cursor around the screen. Maybe a gif of a puppy walking.
+Figure out how to hide the cursor with CSS
+Make the image follow the mouse only if the mouse button is pressed
+-->

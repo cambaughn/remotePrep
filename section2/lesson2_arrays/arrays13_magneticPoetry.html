@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style media="screen">
+      body {
+        padding-top: 40px;
+      }
+      span {
+        font-size: 1.5em;
+      }
+      #magic {
+        color: #3498db;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='container'>
+      <h1> Magnetic Poetry </h1><br>
+      <input type="button" class='btn btn-danger' value="MAKE MY SENTENCE!" onclick="makeSentence()">
+      <input type="button" class='btn btn-info' value="SHOW MAGIC WORDS!" onclick="showMagicWord()">
+      <h2 id='output'></h2>
+      <br>
+      <div class='col-md-4' id='one'></div>
+      <div class='col-md-4' id='two'></div>
+      <div class='col-md-4' id='three'></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      let wordList = "10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 25 | 30 | 35 | 40 | 45 | 50 | 2000 | 2001 | 2002 | & | ? | a | about | above | airplane | all | alphabet | am | and | and | and | animal | anime | answer | anyone | anything | apple | applesauce | are | are | asparagus | astronomy | at | aunt | autumn | baby | bad | ball | ballerina | balloon | barn | base | basket | bathroom | because | begin | believe | best | big | bike | bird | birthday | bite | bite | black | blue | body | book | bored | born | bottom | box | box | boy | breakfast | bring | Britney Spears | Bronx | brother | brown | bubblegum | bug | but | butterfly | by | candy | can't | car | castle | cat | cat | chair | child | chocolate | close | cloud | color | Connecticut | cool | corn | could | couldn't | cow | cried | Dad | dance | dark | day | day | did | different | dinner | dinosaur | do | does | dog | don't | door | down | draw | dream | dug | dull | each | ear | easy | eat | ed | eight | elementary | elephant | er | er | exercise | fall | family | far | fast | fat | favorite | favorite | fed | feet | fight | fish | fish | five | flower | fly | fly | for | four | France | french fries | friend | from | ful | funny | gentle | geometry | gerbil | get | girl | give | glow | good | graffiti | Grandma | Grandpa | green | grow | hamburger | hamster | hand | Harry Potter | has | hate | have | he | her | here | hid | hide | high | him | hit | hold | home | homework | hot | hug | hungry | I | ice cream | if | imagine | important | in | ing | inside | is | is | Japan | JK Rowling | jump | junior | kind | king | laptop | laugh | leave | Lemony Snicket | light | like | like | little | live | live | look | looking | loud | love | lunch | ly | astronaut | mad | magic | man | many | me | midnight | miss | Mom | monkey | monkey | monster | more | morning | mountain | movie | mud | music | my | name | napkin | near | nest | never | New York | newspaper | next | next | night | nine | no | noon | nose | not | notebook | of | once | once | one | one | or | or | over | over | paint | peace | peanut butter | photograph | pink | pizza | poke | Pokemon | pool | pool | pretend | pretty | prince | princes | pumpkin | purple | queen | Queens | quiet | r | rain | rainbow | ran | read | real | remember | ride | ring | room round | round | rude | s | sad | said | sail | saw | say | school | see | seven | share | she | should | show | silly | sister | six | skateboard | skin | skinny | smart | snake | sneakers | so | soccer | something | song | speak | special | spring | square | start | stop | storm | story | strawberry | stupid | summer | swim | take | teacher | telephone | television | tell | that | that | their | them | there | think | three | tiger | time | to | to | told | too | tool | top | town | truth | two | TV | U.S. | uncle | under | used | vacation | vanilla | very | video game | want | warm | was | what | whatever | when | where | who | why | whisper | white | wild | will | will | wind | window | wing | winter | wish | with | with | woman | won't | world | yell | yellow | yes | yesterday | you | you | young | your | zebra"
+
+
+      let words = wordList.split(' | ')
+      let magicWords = []
+      let sentence = []
+      let sentences = []
+      let magicWordsInSentences = []
+
+      for (let i = 0; i < words.length; i += 7) {
+        magicWords.push(words[i])
+      }
+
+      // Formatting the page and displaying the word buttons
+      words.forEach(function(word, i) {
+        if (i < (words.length / 3)) {
+          $('#one').append('<input type="button" class="btn btn-default tiles" onClick="addToSentence(this.id)" id="' + i + '" value="' + word + '">' + '<br>')
+        }
+        else if (i > (words.length / 3) && i < ((words.length / 3) * 2)) {
+          $('#two').append('<input type="button" class="btn btn-default tiles" onClick="addToSentence(this.id)" id="' + i + '" value="' + word + '">' + '<br>')
+        }
+        else {
+          $('#three').append('<input type="button" class="btn btn-default tiles" onClick="addToSentence(this.id)" id="' + i + '" value="' + word + '">' + '<br>')
+        }
+      })
+
+      function addToSentence(clickedId) {
+        sentence.push($('#' + clickedId).val())
+        $('#' + clickedId).css({'background-color': '#27ae60', 'color': 'white', 'border-radius': '5px', 'font-weight': 'bold'})
+        console.log(sentence)
+      }
+
+      function makeSentence() {
+        if (sentences.length > 0 && sentence.length > 0) {
+          sentences.push(sentence)
+          $('#output').append('<br>' + sentence.join(' '))
+          sentence = []
+          $('.tiles').css({'background-color': 'white', 'color': 'black', 'font-weight': 'normal'})
+
+          console.log(sentences)
+        }
+        else if (sentence.length > 0){
+          sentences.push(sentence)
+          $('#output').html(sentence.join(' '))
+          sentence = []
+          $('.tiles').css({'background-color': 'white', 'color': 'black', 'font-weight': 'normal'})
+
+          console.log(sentences)
+        }
+      }
+
+      function showMagicWord() {
+        if (sentences.length > 0) {
+          for (let i = 0; i < sentences.length; i++) {
+            sentences[i].forEach(function(word, index) {
+              if (magicWords.indexOf(word) !== -1) {
+                sentences[i][index] = '<span id="magic">' + word + '</span>'
+              }
+            })
+          }
+        }
+        for (let i = 0; i < sentences.length; i++) {
+          if (i === 0) {
+            $('#output').html(sentences[i].join(' '))
+          }
+          else {
+            $('#output').append('<br>' + sentences[i].join(' '))
+          }
+        }
+      }
+
+    </script>
+  </body>
+</html>

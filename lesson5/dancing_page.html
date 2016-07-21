@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style media="screen">
+      body {
+        padding-left: 100px;
+        padding-top: 100px;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $('body').append('<div id="container"></div>')
+      $('body').append('<img class="one">')
+      let one = $('.one').attr('src', 'http://www.thecoolector.com/wp-content/uploads/2016/03/by_josies_2560.jpg')
+      $('body').append('<img class="two">')
+      $('body').append('<img class="three">')
+      $('body').append('<img class="four">')
+      $('body').append('<img class="five">')
+      $('body').append('<br><img class="six">')
+      let two =   $('.two').attr('src', 'http://www.simonstalenhag.se/bilder/vertikalstaderna.jpg')
+      let three = $('.three').attr('src', 'http://coolmaterial.com/wp-content/uploads/2013/08/Simon-Stalenhag-Sci-Fi-Paintings-1.jpg')
+      let four = $('.four').attr('src', 'http://www.thisiscolossal.com/wp-content/uploads/2015/05/simon-11.jpg')
+      let five = $('.five').attr('src', 'http://conceptartworld.com/wp-content/uploads/2015/01/Simon_Stalenhag_Concept_Illustration_02.jpg')
+      $('img').css({'width': '200px', 'height': 'auto'})
+      $('img').css({'width': '400px', 'height': 'auto'})
+      let six = $('.six').attr('src', 'http://www.simonstalenhag.se/bilderbig/by_themascot_1920.jpg')
+
+      let arrayElements = [one, two, three, four, five, six]
+
+      function randomPosition(element) {
+        let randomX = Math.round(Math.random() * (window.innerWidth - $(element).width()))+ 'px'
+        let randomY = Math.round(Math.random() * (window.innerHeight - $(element).height())) + 'px'
+        $(element).css({'position': 'fixed', 'left': randomX, 'top': randomY})
+      }
+
+      arrayElements.map(x => randomPosition(x))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div id="output">
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      let bucketList = []
+
+      bucketList[0] = 'Go skydiving'
+      bucketList[1] = 'Hug a shark'
+
+      bucketList.push('Arm wrestle a robot', 'Travel back in time and fist-bump Abe Lincoln')
+
+      let recipe = []
+
+      recipe[0] = 'Open poptart box'
+      recipe[1] = 'Take poptart package out of the box'
+      recipe[2] = 'Open foil package'
+      recipe[3] = 'Put poptarts in toaster'
+      recipe[4] = 'Enjoy the heck out of those poptarts. You deserve it.'
+
+      function appendStrings(array, selector) {
+        let i = 0
+        while (i < array.length) {
+          $(selector).append(array[i] + '<br>')
+          i++
+        }
+      }
+
+      appendStrings(recipe, '#output')
+      appendStrings(bucketList, '#output')
+
+      </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      function tripler(num) {
+        return num * 3
+      }
+      console.log('tripler(3): ' + tripler(3))
+
+      function multiply(a, b) {
+        return a * b
+      }
+      console.log('multiply(2, 3): ' + multiply(2, 3))
+
+      function divide(a, b) {
+        return a / b
+      }
+      console.log('divide(6, 3): ' + divide(6, 3))
+
+      function remainder(a, b) {
+        return a % b
+      }
+      console.log('demainder(20, 7): ' + remainder(20, 7))
+
+      let calc = remainder(divide(multiply(tripler(5), 12), 2), 3)
+      console.log('A bunch of calculations in one line: ' + calc)
+
+      function allTheCalcs(a) {
+        let newCalc = tripler(a)
+        newCalc = multiply(newCalc, 12)
+        newCalc = divide(newCalc, 2)
+        return newCalc = remainder(newCalc, 3)
+      }
+      console.log('allTheCalcs(5): ' + allTheCalcs(5))
+    </script>
+  </body>
+</html>

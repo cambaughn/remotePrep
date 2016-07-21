@@ -1,0 +1,85 @@
+
+
+<html>
+<head>
+  <title>HTML Document</title>
+</head>
+<body>
+<div id="everything">
+      <h1>A heading!</h1>
+      <p id='sometext'>Here's some text!</p>
+      <p>Here's a second set of text!</p>
+      <div class="holder">
+          <ul>
+              <li>List Item 1</li>
+              <li>List Item 2</li>
+              <li>List Item 3</li>
+          </ul>
+      </div>
+      <div class="holder">
+          <ol>
+              <li>List Item 4</li>
+              <li>List Item 5</li>
+              <li>List Item 6</li>
+          </ol>
+      </div>
+      <div id="change-me">This part needs to change!</div>
+      <div id="secret">We should hide this!</div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.js" charset="utf-8"></script>
+  <script>
+  var a = 4;
+  console.log(a)
+
+  $('h1').css('color', 'blue')
+  $('body').css('background-color', 'grey')
+  $('#everything').css('font-size', '1.2em')
+  $('.holder').css('border', '2px solid black')
+  $('ul li').css('font-weight', 'bold')
+  $('h1 + p').css('color', 'green')
+  $('#secret').hide()
+  $('#secret').show()
+  $('#change-me').text('This is a new sentence!')
+  $('#change-me').append(' And this is an appended sentence!')
+  $('#change-me').html('<p>This is a new sentence with paragraph tags!</p>')
+  $('#change-me').append('<p>And this is an appended paragraph with tags!</p>')
+  $('li').text('New text')
+  $('li').append(' & MOAR NEW TEXT')
+  $('#everything').append('<ol> <li>UNO</li> <li>DOS</li> <li>TRES</li> </ol>')
+
+
+  // jQuery effects exercise
+  $(function() {
+    $('li').hide().fadeIn(2000)
+    $('#change-me').fadeOut(3000)
+    $('#secret').hide().slideDown(3000)
+    $('#sometext').slideUp(3000)
+    $('#sometext').slideToggle(3000)
+  })
+
+
+  </script>
+</body>
+</html>
+
+
+
+<!--
+Include the jQuery library in the file
+Write an expression using jQuery that targets all h1 elements and makes their font-color blue
+... that targets the body element and turns its background red
+... that targets the element with the id "everything" and increases its font-size
+... that targets all elements with the class "holder" and adds a black border
+... that targets all li elements within ul elements and bold them
+... that targets p elements coming immediately after an h1 element and makes it green
+... that targets the element with the id of "secret" and changes its display property to 'none'
+... now change #secret's display property back to block
+... that targets the element with the id of "change-me" and changes its text to a new sentence
+... that appends new text to the end of the sentence in #change-me
+... that replaces #change-me's contents with two new paragraph tags with content included
+... that appends a new paragraph to #change-me
+... that targets the all li elements and changes their text to a new sentence
+... that targets the all li elements and appends new text to all of them
+... that targets the element with the id of "everything" and appends an ordered list with three list elements inside
+-->

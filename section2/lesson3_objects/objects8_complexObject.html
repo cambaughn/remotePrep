@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div id="primitiveDataTypes"></div>
+    <div id="arrayValues"></div>
+    <div id='bobby'></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      let complexObject = {
+        string: "I'm a string!",
+        number: 42,
+        array: ["all sorts of stuff", 10, true, undefined, {me: "an object", more: "find me in here!"}, function(){console.log('beepity-beep')}],
+        simpleObject: {name: 'bob', location: 'basement'},
+        fn: function(){
+          console.log("fn has been invoked! Checking both kinds of invocation-time inputs...");
+          console.log("what is my calling context?", this);
+          console.log("what are my arguments?", arguments);
+        }
+      }
+
+      $('#primitiveDataTypes').append(complexObject.string + '<br>' + complexObject.number)
+      for (let i = 0; i < complexObject.array.length; i++) {
+        $('#arrayValues').append(complexObject.array[i] + '<br>')
+      }
+
+      for (let key in complexObject.simpleObject) {
+        $('#bobby').append(complexObject.simpleObject[key] + '<br>')
+      }
+      complexObject.fn('cool', 'whaaat')
+
+      let cameron = {
+        name: 'Cameron',
+        job: 'Crossfit Coach',
+        activity: 'Crossfit',
+        hobby: function(hobby) {
+          console.log('My hobby is ' + hobby)
+          console.log('My favorite activity is ' + this.activity)
+          console.log('These are all my hobbies: ', arguments)
+        },
+        array: [{dude: function(){console.log('duuuude')}}] // If you have an anonymous function inside of an object, it will run automatically. If you provide a key, it has to be called
+      }
+
+      cameron.hobby(cameron.activity, 'photography', 'watching movies', 'coding!')
+      cameron.array[0].dude()
+    </script>
+  </body>
+</html>

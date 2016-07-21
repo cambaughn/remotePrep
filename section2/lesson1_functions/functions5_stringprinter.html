@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <style>
+      .noun {
+        color: green;
+        font-weight: bold;
+      }
+      .verb {
+        color: blue;
+        font-weight: bold;
+      }
+      .adj {
+        color: purple;
+        font-weight: bold;
+      }
+      .adv {
+        color: pink;
+        font-weight: bold;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div id="output"></div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      function stringPrinter(string) {
+        $('#output').text(string)
+      }
+
+      function funnySentence(noun, verb, adj, adv) {
+        let sentence = 'I have a <span class="adj">' + adj + '</span> <span class="noun">' + noun + '</span> that likes to <span class="verb">' + verb + '</span> <span class="adv">' + adv + '</span>. '
+        $('#output').append(sentence)
+      }
+      funnySentence('dog', 'run', 'beautiful', 'quickly')
+      funnySentence('car', 'fly', 'gross', 'lazily')
+
+      function randomFunnySentence() {
+        let array = [['beautiful', 'silly', 'young', 'lazy', 'swift', 'grey', 'metallic'], ['car', 'rocket', 'spaceship', 'submarine', 'fish', 'friend', 'grandfather'], ['run', 'jump', 'play pickleball', 'fly', 'eat', 'fight'], ['lazily', 'swiftly', 'slowly', 'quickly', 'corrosively', 'powerfully', 'diligently', 'maniacally']]
+
+        function randNum(array) {
+          return Math.round(Math.random() * (array.length - 1))
+        }
+        let adj = array[0][randNum(array[0])]
+        let noun = array[1][randNum(array[1])]
+        let verb = array[2][randNum(array[2])]
+        let adv = array[3][randNum(array[3])]
+
+        let sentence = 'I have a <span class="adj">' + adj + '</span> <span class="noun">' + noun + '</span> that likes to <span class="verb">' + verb + '</span> <span class="adv">' + adv + '</span>. '
+        $('#output').append(sentence)
+      }
+
+      randomFunnySentence()
+      randomFunnySentence()
+      randomFunnySentence()
+
+    </script>
+  </body>
+</html>

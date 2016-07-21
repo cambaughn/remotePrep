@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id='output'> </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      let myCat = {}
+      myCat['name'] = "Fluffy"
+      myCat['age'] = 3
+      myCat['alive'] = true
+
+      for (let catKey in myCat) {
+        console.log(myCat[catKey])
+      }
+
+      let myDreamLife = {}
+      let propertyKey = 'job'
+      myDreamLife[propertyKey] = 'developer'
+      let anotherPropertyKey = 'salary'
+      myDreamLife[anotherPropertyKey] = 120000
+      let nextProperty = 'car'
+      myDreamLife[nextProperty] = 'Tesla Model X'
+
+      for (let dreamKey in myDreamLife) {
+        console.log(myDreamLife[dreamKey])
+      }
+
+      let dreamCar = {}
+      dreamCar.make = 'Tesla'
+      dreamCar.model = 'Model X'
+      dreamCar.Color = 'White'
+      dreamCar.year = 2017
+      dreamCar.registered = true
+      let prop = 'battery'
+      dreamCar.prop = '90D'
+
+      for (let carKey in dreamCar) {
+        console.log(dreamCar[carKey])
+      }
+
+      for (let carKey in dreamCar) {
+        console.log('hello: ' + typeof dreamCar[carKey])
+        if (carKey.toLowerCase() === 'color') {
+          $('#output').append(dreamCar[carKey] + '<br>')
+        }
+        if (dreamCar[carKey].toString().toLowerCase() === 'model x') {
+          $('#output').append(carKey + '<br>')
+        }
+      }
+
+      let greetingObject = {
+        greeting: 'hello',
+        farewell: 'Bye!'
+      }
+      let targetKey = 'greeting'
+      for (let key in greetingObject) {
+        if (key === targetKey) {
+          $('#output').append(targetKey + '<br>')
+        }
+      }
+
+    </script>
+  </body>
+</html>
+
+<!--
+Use a for in loop to iterate over your cat, dream_car and dream_life objects. Re-write the loop from scratch each time and use a variable name other than key for each one.
+Use a for in loop to search obj for the key color and use jQuery to append its value to a special div on your web page.
+Search obj for the value "down", and append its key into the div.
+Create a variable target_key and assign it a string "greeting". Use the target_key variable and for in to find the greeting property and append its value into the div.
+-->

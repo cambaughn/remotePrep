@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <style media="screen">
+      #userInput {
+        width: 200px;
+      }
+      .btn {
+        margin-left: 5px;
+      }
+      body {
+        padding-top: 40px;
+      }
+      #output {
+        display: table-cell;
+        vertical-align: middle;
+        float: none;
+        height: 200px;
+        width: 200px;
+      }
+      #adjust {
+        margin-top: 100px
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+
+      <div class='form-group'>
+        <span class='input-group'>
+          <input type="text" id="userInput" class='form-control' placeholder="Put your question here!"></input>
+          <input type="button" class='btn btn-info push-left' name="submit" value='ASK QUESTION!' onclick='newResponse(randomReplies)'>
+          <input type="button" class='btn btn-success push-left' name="submit" value='ASK AGAIN!' onclick='askAgain()'>
+        </span>
+      </div>
+
+      <div id='adjust'>
+        <div id='output' class='text-center'></div>
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    let repliesString = "Signs point to yes. Yes. Reply hazy, try again. Without a doubt. My sources say no. As I see it, yes. You may rely on it. Concentrate and ask again. Outlook not so good. It is decidedly so. Better not tell you now. Very doubtful. Yes - definitely. It is certain. Cannot predict now. Most likely. Ask again later. My reply is no. Outlook good. Don't count on it."
+
+    let repliesArray = repliesString.split('. ')
+    let counter = 0
+    let randomReplies = randomArrayMaker(repliesArray)
+
+    function randNum(array) {
+      return Math.round(Math.random() * (array.length - 1))
+    }
+
+    function response(array) {
+      drawCircle()
+      $('#output').text(array[randNum(array)])
+    }
+
+    function newResponse(array) {
+      drawCircle()
+      console.log(array[counter])
+      $('#output').text(array[counter])
+      if (counter < array.length - 1) {
+        counter += 1
+      }
+      else {
+        counter = 0
+      }
+    }
+
+    function askAgain() {
+      $('#userInput').val('')
+      $('#output').hide()
+    }
+
+    function drawCircle() {
+      $('#output').show()
+      $('#output').css({'border-radius': '100%', 'width': '200px', 'height': '200px', 'box-shadow': '10px 10px 100px 50px #4CE4FF', 'font-weight': 'bold'})
+    }
+
+    // Rather than try to pick a random number each time and check if that array element has been used, better to create a random array first, then cycle through it. A new random array will be created each page load, but will just be cycled through until the user stops asking questions.
+    function randomArrayMaker(array) {
+      let newArray = []
+      while (array.length > 0) {
+        newArray.push(array.splice(randNum(array), 1))
+      }
+      return newArray
+    }
+
+
+    </script>
+  </body>
+</html>
+
+
+
+<!--
+  Create a Magic 8-ball that allows a user to type a question into an input field.
+  When the user clicks the "ask question" button, register a click handler function that randomly selects a reply from an array of appropriately vague stock phrases.
+  Display the answer inside a glowing circle or something crazy like that.
+  Allow the user to click an "ask again" button which clears their previous question and output.
+  Refactor your code so that the user doesn't receive the same reply twice until all the replies have been used at least once.
+-->

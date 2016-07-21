@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      let h = 0
+      let w = 0
+      let rgb = []
+
+      function getSize() {
+        h = $(window).height()
+        w = $(window).width()
+        console.log('Hola', h, w)
+      }
+      console.log(h, w)
+      $(window).resize(getSize).mousemove(function(event) {
+        let x = Math.round(event.pageX/w * 255)
+        let y = Math.round(event.pageY/h * 255)
+        rgb = [
+          x,
+          y,
+          x*y/2
+        ]
+        rgb = 'rgb(' + rgb.join(', ') + ')'
+        $('body').css('background-color', rgb)
+      }).resize().click(function(event) {
+        
+      })
+
+    </script>
+  </body>
+</html>
+
+<!--
+var $win = $(window),
+    w = 0,h = 0,
+    rgb = [],
+    getWidth = function() {
+        w = $win.width();
+        h = $win.height();
+    };
+
+$win.resize(getWidth).mousemove(function(e) {
+
+    rgb = [
+        Math.round(e.pageX/w * 255),
+        Math.round(e.pageY/h * 255),
+        150
+    ];
+
+    $(document.body).css('background','rgb('+rgb.join(',')+')');
+
+}).resize();
+-->

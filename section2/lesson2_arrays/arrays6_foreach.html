@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div id="output">
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      let bucketList = []
+
+      bucketList[0] = 'Go skydiving'
+      bucketList[1] = 'Hug a shark'
+
+      bucketList.push('Arm wrestle a robot', 'Travel back in time and fist-bump Abe Lincoln')
+
+      let recipe = []
+
+      recipe[0] = 'Open poptart box'
+      recipe[1] = 'Take poptart package out of the box'
+      recipe[2] = 'Open foil package'
+      recipe[3] = 'Put poptarts in toaster'
+      recipe[4] = 'Enjoy the heck out of those poptarts. You deserve it.'
+
+      function appendStrings(item) {
+          $('#output').append(item + '<br>')
+      }
+
+      recipe.forEach(appendStrings)
+      bucketList.forEach(appendStrings)
+
+      'use strict'
+      let numbers = [500, 20, 0, 3, 200, 200, 200, 5, 7, 1000]
+
+      function biggestSmallest(array) {
+        let newArray = []
+        let spliceValues = []
+
+        // For each, subtract the others. If positive, add one to tally, otherwise don't do anything. Index should be number of positives. Probably won't work with negative numbers, though.
+        array.forEach(function(number) {
+          let positives = 0
+          let duplicateNum = 0
+          let duplicates = 0
+          for (let i = 0; i < array.length; i++) {
+            if (array.indexOf(number) === i) {
+              continue
+            }
+            else {
+              let calc = number - array[i]
+              if (calc > 0) {
+                positives += 1
+              }
+              else if (calc === 0) {
+                duplicateNum = number
+                duplicates += 1
+              }
+              else {
+                continue
+              }
+            }
+          }
+          if (duplicates === 0) {
+            newArray[positives] = number
+          }
+          else {
+            let miniArray = [positives, 0, duplicateNum]
+            spliceValues.push(miniArray)
+          }
+        })
+
+        spliceValues.forEach(function(array) {
+          newArray.splice(array[0], array[1], array[2])
+        })
+
+        newArray = newArray.filter(x => Boolean || 0)
+        return newArray
+      }
+
+      console.log(biggestSmallest(numbers))
+
+
+      // another, different way
+
+      function sortNumber(a,b) {
+        return a - b;
+      }
+
+      let secondNewArray = numbers.sort(sortNumber)
+      console.log(secondNewArray)
+
+      // third way
+
+      let thirdNewArray = numbers.sort((a, b) => a - b)
+      console.log(thirdNewArray)
+
+      </script>
+  </body>
+</html>

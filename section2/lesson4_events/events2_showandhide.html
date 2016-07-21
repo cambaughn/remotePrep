@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style media="screen">
+      .image-div {
+        height: 300px;
+        margin: 0px 10px 20px 10px;
+        overflow: hidden;
+        z-index: 1;
+      }
+      img {
+        width: auto;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        left: -20%;
+        z-index: -1;
+      }
+      #roadster {
+        margin-left: 3%;
+      }
+      #modelS {
+        margin-left: -20%;
+      }
+      #modelX {
+        margin-left: -5%;
+      }
+      #model3 {
+        margin-left: -8%;
+      }
+      html, body {
+        height: 100%;
+      }
+      body {
+        margin-bottom: 200px;
+      }
+      h2 {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Tesla</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li id='roadsterLink'><a href='#'>Roadster</a></li>
+            <li id='modelSLink'><a href='#'>Model S</a></li>
+            <li id='modelXLink'><a href='#'>Model X</a></li>
+            <li id='model3Link'><a href='#'>Model 3</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class='container'>
+      <div class='col-md-offset-2 leftSide'>
+        <div class='image-div col-md-4'>
+          <h2 class='text-center'>Roadster</h2>
+          <img src="http://jfs24.com/data_images/reviews/tesla-roadster/tesla-roadster-05.jpg" alt="Tesla Roadster" id='roadster' />
+        </div>
+        <div class='image-div col-md-4 col-md-offset-6'>
+          <h2 class='text-center'>Model S</h2>
+          <img src="https://www.tesla.com/sites/default/files/box-image.jpg" alt="Tesla Model S" id='modelS' />
+        </div>
+        <div class='image-div col-md-4'>
+          <h2 class='text-center'>Model X</h2>
+          <img src="http://st.motortrend.com/uploads/sites/5/2016/03/2016-Tesla-Model-X-P90D-front-three-quarter-in-motion-e1459357719515.jpg" alt="Tesla Model X" id='modelX' />
+        </div>
+        <div class='image-div col-md-4'>
+          <h2 class='text-center'>Model 3</h2>
+          <img src="http://st.motortrend.com/uploads/sites/5/2016/05/2017-Tesla-Model-3-front-three-quarter-03.jpg" alt="Tesla Model 3" id='model3' />
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function showHideClass() {
+          if ($(this).css('opacity') !== '0') {
+            $(this).css({'opacity': '0'})
+          }
+          else {
+            $(this).css({'opacity': '1'})
+          }
+        }
+
+        $('.image-div').click(showHideClass)
+
+    </script>
+  </body>
+</html>
+
+<!--
+
+Make the above code work inside a script tag in an HTML document
+Create a div with the text "show me the money". If the user clicks on it, show them the money!
+Create a div with the text "show me the Oprah". If the user clicks on it, show them the Oprah!
+Create a div with the text "show me the Opera". If the user clicks on it, show them the Opera!
+Make it so that when a user clicks on one item to show it, all the others hide first if they are already shown.
+When a user clicks on an item that is already shown, hide it instead.
+
+-->

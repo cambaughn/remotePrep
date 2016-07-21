@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id='pics'></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    let themDogs = [{
+        name: 'Henry',
+        age: 0.5,
+        breed: 'Aussie',
+        food: 'kibble',
+        toys: ['tennis ball', 'chew toy'],
+        picture: 'http://rubyriverminiaustralianshepherds.com/wp-content/uploads/aussie-puppy-for-sale-940x412.jpg'
+      }, {
+        name: 'Tilly',
+        age: 5,
+        breed: 'Mutt',
+        food: 'kibble',
+        toys: ['bone', 'kong', 'squeaky toy'],
+        picture: 'http://www.dogchannel.com/images/zones/top_promo/excited-mixed-breed.jpg'
+      }, {
+        name: 'Apollo',
+        age: 10,
+        breed: 'Labrador',
+        food: 'absolutely anything',
+        toys: ['old sock', 'other old sock', 'more old socks'],
+        picture: 'http://media.cmgdigital.com/shared/img/photos/2014/08/01/5a/66/LadyLabrador.jpg'
+    }];
+
+    for (let i = 0; i < themDogs.length; i++) {
+      console.log(themDogs[i].name)
+    }
+
+    let allToys = []
+    for (let i = 0; i < themDogs.length; i++) {
+      allToys.push(themDogs[i].toys)
+    }
+
+    function findDogWithToy(toy) {
+      return themDogs.filter(obj => obj.toys.includes(toy))[0]
+    }
+
+    console.log(findDogWithToy('squeaky toy').name)
+
+    themDogs.forEach(function(dog) {
+      $('#pics').append(dog.name + '<br>').append('<img src="' + dog.picture + '"> <br>')
+    })
+    </script>
+  </body>
+</html>

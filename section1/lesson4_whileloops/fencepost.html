@@ -1,0 +1,40 @@
+<!--
+  Create a variable n and assign it an integer.
+  Code a while loop that builds as a single string, the numbers 1 through n, separated by commas
+  How can we make sure not to have a comma after the last number? e.g., for n = 9 print "1, 2, 3, 4, 5, 6, 7, 8, 9"
+  Use .textContent to place that string into a div#target in the HTML document.
+  Now change your code to create a string full of <p> tags, with the number inside, and with <hr> dividers between them (but not after the last one), and use .innerHTML to place them into the page.
+  Give odd numbers a class of "odd", even numbers a class of "even." Have a css rule inside your <style> tag that styles them differently.
+-->
+
+
+<!-- part 2 of fencepost loop -->
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+  body {
+    margin-left: 100px;
+    margin-top: 100px;
+    }
+  </style>
+
+  <body>
+    <div id='target'></div>
+
+    <script>
+      let n = 10
+      let string = ''
+      let number = 1
+      let target = document.getElementById('target')
+
+      while (n > 0) {
+        string += ' <p>' + number + '<p>' + (n !== 1 ? '<hr> ' : '')
+        number++
+        n--
+        if ( n === 0 ) target.innerHTML = string
+        // innerHTML is key here. textContent doesn't work, and instead renders the tags as a string
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <input type='text' id='user_input'>
+    <input type='button' value='submit' onclick='onClick()'>
+
+    <div>
+      <p id='story'>Welcome to Dragon Royale! You are facing off against a ferocious dragon, but you must first choose your weapon!</p>
+      <p id='question'>Do you choose sword or bow?</p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script>
+      let user_value = ''
+      let story = document.getElementById('story')
+      let question = document.getElementById('question')
+
+      function onClick() {
+        user_value = document.getElementById('user_input').value.toLowerCase()
+        return ifCheck()
+      }
+
+      function resetUserValue() {
+        document.getElementById('user_input').value = ''
+      }
+
+      function ifCheck() {
+        if (user_value === 'sword') {
+          story.textContent = 'Good choice! A sword is a knight\'s most important weapon!'
+          question.textContent = 'Would you like to fight or sneak?'
+          resetUserValue()
+        }
+        else if (user_value === 'bow') {
+          story.textContent = 'A wise decision! A bow will allow you to attack from a safe distance!'
+          question.textContent = 'Would you like to fight or sneak?'
+          resetUserValue()
+        }
+        else if (user_value === 'fight') {
+          story.textContent = 'Excellent! You were able to defeat the dragon!'
+          question.textContent = 'This is the end of your quest! Go home and feast!'
+          resetUserValue()
+        }
+        else if (user_value === 'sneak') {
+          story.textContent = 'Oh no! The dragon saw you! It\'s too late!'
+          question.textContent = 'You\'ve been eaten! This is the end of your quest.'
+          resetUserValue()
+        }
+      }
+
+    </script>
+  </body>
+</html>
