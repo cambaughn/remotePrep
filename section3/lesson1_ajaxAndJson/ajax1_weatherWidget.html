@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="weatherWidget.css" media="screen" title="no title" charset="utf-8">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+
+      <h1 id='seattle' class='cities'>Seattle</h1>
+      <h1 id='sf' class='cities'>San Francisco</h1>
+      <h1 id='london' class='cities'>London</h1>
+      <h1 id='tokyo' class='cities'>Tokyo</h1>
+
+      <div id='box'>
+        <h1 id='weatherIcon'></h1>
+        <div id='rightSide'>
+          <h1 id='currentTemp'></h1>
+          <h1 id='place'></h1>
+          <h3 id='weather'></h3>
+        </div>
+
+        <div id='info'>
+          <div id='wind'>
+
+          </div>
+          <div id='highLow'>
+            <h3 id='max'></h3>
+            <h3 id='min'></h3>
+          </div>
+          <div class="windSpeedDiv">
+            <div class="arrow-up"></div>
+            <h2 id='windSpeed'></h2>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      function displayInfo(weatherData) {
+        console.log(weatherData)
+        $('#currentTemp').html(Math.round(weatherData.main.temp) + '<span id="degrees">°</span>')
+        $('#place').html(weatherData.name)
+        $('#weather').html(weatherData.weather[0].description)
+        $('#min').html('<span class="ion-arrow-down-b"></span> ' + Math.round(weatherData.main.temp_min) + '°')
+        $('#max').html('<span class="ion-arrow-up-b"></span> ' + Math.round(weatherData.main.temp_max) + '°')
+        $('#wind').html('<i class="material-icons" id="parasol">beach_access</i>')
+        $('#windSpeed').html(Math.round(weatherData.wind.speed) + ' mph')
+        // $('#windSpeed').html(new Date(weatherData.sys.sunrise * 1000))
+
+        if (weatherData.weather[0].main.toLowerCase() === 'clear') {
+          $('#weatherIcon').html('<i class="fa fa-sun-o" aria-hidden="true"></i>')
+        }
+        else {
+          $('#weatherIcon').html('<i class="fa fa-cloud" aria-hidden="true"></i>')
+        }
+      }
+
+      $.get('http://api.openweathermap.org/data/2.5/weather?q=' + 'Seattle' + '&mode=json&units=imperial&APPID=93b03ba103c6cabec96f47a6f650769e', displayInfo)
+
+      function getWeather(city){
+        $.get('http://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent($(this).text()) + '&mode=json&units=imperial&APPID=93b03ba103c6cabec96f47a6f650769e', displayInfo)
+
+      }
+
+      $('.cities').click(getWeather)
+    </script>
+  </body>
+</html>
