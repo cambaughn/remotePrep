@@ -4,6 +4,10 @@ let cache = []
 let commentsCache = []
 let usersCache = {}
 
+
+$('#editPostForm').hide()
+
+
 $.get('http://jsonplaceholder.typicode.com/posts', placeIdOnPage)
 $.get('http://jsonplaceholder.typicode.com/comments', function(comments) {
   comments.forEach(function(comment) {
@@ -30,11 +34,16 @@ function showTitles() {
   })
 }
 
+let thisId
 function showPost(e) {
-  let thisId = $(this).attr('id')
+  $('#postForm').hide()
+  thisId = $(this).attr('id')
   let post = cache[thisId - 1]
   $('#output').html(JSON.stringify(post).replace(/"/g, ''))
 
+  if (currentUser) {
+    $('#editPostForm').show()
+  }
 
   commentsCache.forEach(function(comment) {
     if (comment.postId == thisId) {
@@ -65,6 +74,10 @@ $(document).on('click', '#back', function(e) {
   }
   else {
     filterPosts()
+  }
+  if (currentUser) {
+
+    $('#postForm').show()
   }
 })
 
@@ -112,6 +125,25 @@ $(document).on('click', '#submitPost', function(e) {
     $('#postForm')[0].reset()
   })
 })
+
+function editPost(e) {
+  e.preventDefault()
+  let patchData = {
+    userId: currentUser,
+    id: thisId,
+    title: $('#newTitle').val(),
+    body: $('#newBody').val()
+  }
+  console.log(thisId)
+  let url = 'http://jsonplaceholder.typicode.com/posts/' + thisId
+  console.log(url)
+  $.ajax({url: url, type: 'PATCH', data: patchData, function(response, status) {
+
+    console.log(JSON.stringify(response), status)
+    $('#editPostForm')[0].reset()
+  }})
+}
+$(document).on('click', '#submitPostChange', editPost)
 
 /* for (i = 1; i <= 10; i++) {
   $.get('http://jsonplaceholder.typicode.com/posts/' + i, placePostOnPage)

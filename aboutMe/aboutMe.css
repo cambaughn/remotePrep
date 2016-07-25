@@ -1,0 +1,106 @@
+html {
+  min-height: 100%;
+  min-width: 100%;
+}
+body {
+  color: white;
+  /* background: white url('emp.jpg') no-repeat fixed center; */
+  min-height: 100%;
+  min-width: 100%;
+  overflow-y: auto;
+}
+#bars {
+  color: black;
+}
+div.mdl-layout__drawer-button i {
+  color: rgba(0, 0, 0, 0.6);
+  padding-top: 12px;
+}
+#drawer {
+  color: rgba(0, 0, 0, 0.6);
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+  margin-bottom: 60px;
+}
+#title {
+  font-family: 'Oswald', sans-serif;
+  float: left;
+}
+#header {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+#codeIcon {
+  font-size: 2.5em;
+  float: left;
+  margin-right: 10px;
+}
+
+div.card {
+  min-width: 350px;
+  max-width: 350px;
+  min-height: 350px;
+  max-height: 350px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 1em;
+}
+.front {
+  background-color: #2196F3;
+  color: white;
+  box-shadow: 0px 10px 30px -10px grey;
+  height: 100%;
+  width: 100%;
+}
+
+.back {
+  background-color: #2196F3;
+  color: white;
+  box-shadow: 0px 10px 30px -10px grey;
+  padding-top: 30%;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 100%;
+  width: 100%;
+}
+
+.backContent {
+  margin-top: 100px;
+}
+
+i.icon {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40%;
+  font-size: 5em;
+}
+
+#card2 .front, #card2 .back {
+  background-color: #673AB7;
+}
+#card3 .front, #card3 .back {
+  background-color: #4CAF50;
+}
+#card3 .back {
+  padding-top: 25%;
+}
+#card4 .front, #card4 .back {
+  background-color: #FDD835;
+}
+#card5 .front, #card5 .back {
+  background-color: #E91E63;
+}
+#card5 .back, #card6 .back {
+  padding-top: 35%;
+}
+#card6 .front, #card6 .back {
+  background-color: #3F51B5;
+}
