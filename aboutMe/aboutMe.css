@@ -89,7 +89,7 @@ i.icon {
 #card3 .front, #card3 .back {
   background-color: #4CAF50;
 }
-#card3 .back {
+#card3 .back, #card1 .back  {
   padding-top: 25%;
 }
 #card4 .front, #card4 .back {
