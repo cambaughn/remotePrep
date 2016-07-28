@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="container">
+      <div id="output">
+
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="productList.js"></script>
+    <script type="text/javascript">
+      console.log('products', products)
+      let p = products
+      // first: Pass _.first() the array of products and display the returned object in a "featured" section of your site.
+      let first = _.first(p)
+      console.log('first', first)
+
+      // last: Pass _.last() the array of products and display the returned object in a "clearance" section of your site.
+      let last = _.last(p)
+      console.log('last', last)
+
+      // filter: Use _.filter() to display only products that belong to the "books" category.
+      let filteredList = _.filter(p, item => item.category === 'books')
+      console.log('books', filteredList)
+
+      // reject: Use _.reject() to display only products that are priced below $20.
+      let lowPrice = _.reject(p, item => item.price > 20)
+      console.log('reject all but low price ', lowPrice)
+
+      // uniq: Use _.uniq() to ensure that their are no duplicate selling points in any products before displaying them.
+
+      // Use _.map() to grab the picture_url of all products for sale, assign each to the src property of a new <img> tag and return that DOM element. Pass the result of calling _.map() directly into a $('#container').append() expression to create a photo montage.
+      let pictures = _.map(p, item => '<img src="' + item.picture_url + '">')
+      pictures.forEach(function(picture) {
+        $('#output').append(picture)
+      })
+
+      // pluck: Use _.pluck() to quickly retrieve a list of the names of all products for sale to list them in an index
+      let names = _.pluck(p, 'name')
+      console.log('Names: ', names)
+
+      // reduce: Pass a shopping cart (array of objects) to _.reduce() and use it to add up the total price of the order.
+      let totalPrice = _.chain(p)
+                        .map(item => item.price)
+                        .reduce((a, b) => a + b)
+                        .value()
+
+      console.log('Total Price: ', totalPrice)
+
+      // contains: Determine if the order _.contains() a copy of 'Twilight'. If so, display a drastic message to the user asking them to re-evaluate their life choices.
+      let isThereTwilight = _.findWhere(p, {name: 'Twilight'})
+      if (isThereTwilight) {
+        console.log(true)
+        console.log('You should read something else....')
+      }
+
+      // every: Use _.every() to determine if every item in the order has a price tag less than $10. If so, call the user a cheapskate!
+      let every = _.every(p, item => item.price < 50)
+      if (every) {
+        console.log('You\'re a super saver!')
+      }
+      else {
+        console.log('You\'re probably spending too much...')
+      }
+
+      // some: Use _.some() to determine if any item in the order has a price tag of $100 or more. If so, chide the user for their profligacy!
+      let some = _.some(p, item => item.price > 100)
+      if (some) {
+        console.log('Wow, what a fancy bookstore.')
+      }
+      else {
+        console.log('No fancy books here. Move along.')
+      }
+
+      // extend: Use _.extend() to merge two objects together. What would this be good for?
+      let newBooks = [{title: 'Best Book Ever', author: 'Jon Jonson', price: 500, onSale: false}, {price: 100, comment: 'Best book around', onSale: true}]
+      let updatedBook = _.extend(newBooks[0], newBooks[1])
+      console.log(updatedBook)
+
+    </script>
+  </body>
+</html>
