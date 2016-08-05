@@ -10,6 +10,7 @@
   <p>Open your local copy in your browser and check the test results in your console.</p>
   <p>change <code>xdescribe</code> to <code>describe</code> in your testing code when you're ready to implement each setion.</p>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
 // What's this for?
 var _ = {}
@@ -18,6 +19,7 @@ let arrayOfNumbers = [0, 1, 2, 3, 4, 5]
 let objectOfNumbers = {zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6}
 let duplicatesArray = [0, 1, 1, 2, 3, 3, 4, 5, 5, 5, 6]
 let arrayOfStrings = ['This ', 'is ', 'an ', 'array ', 'of ', 'strings.']
+let stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}]
 
 // Returns whatever value is passed as the argument. This function doesn't
 // seem very useful, but remember it-- if a function needs to provide an
@@ -216,6 +218,27 @@ _.pluck = function(collection, key) {
 //          No accumulator is given so the first element is used.
 _.reduce = function(collection, iterator, accumulator) {
   if (Array.isArray(collection)) {
+  accumulator = accumulator === undefined ? _.first(collection) : accumulator
+  return _.last(_.map(collection, function(element) {
+      return accumulator = iterator(accumulator, element)
+  }))
+  }
+  else {
+    if (accumulator === undefined) {
+      accumulator = collection[Object.keys(collection)[0]]
+    }
+    else {
+      accumulator = accumulator
+    }
+    let newObject = _.map(collection, function(element) {
+        return accumulator = iterator(accumulator, element)
+    })
+    return newObject[Object.keys(newObject)[Object.keys(newObject).length - 1]]
+  }
+}
+
+/* _.reduce = function(collection, iterator, accumulator) {
+  if (Array.isArray(collection)) {
     for (let key = 0; key < collection.length; key++) {
       value = collection[key]
       if (accumulator) {
@@ -239,7 +262,7 @@ _.reduce = function(collection, iterator, accumulator) {
     }
     return accumulator
   }
-}
+} */
 
 // Determine if the array or object contains a given value (using `===`).
 _.contains = function(collection, target) {
@@ -257,14 +280,26 @@ _.contains = function(collection, target) {
 // Determine whether all of the elements match a truth test.
 _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-
+    return _.reduce(collection, function(accumulator, item) {
+      if (!accumulator) {
+        return false
+      }
+      return iterator(item)
+    }, true)
 }
 
 // Determine whether any of the elements pass a truth test. If no iterator is
 // provided, provide a default one
 _.some = function(collection, iterator) {
-    // TIP: There's a very clever way to re-use every() here.
-
+  // TIP: There's a very clever way to re-use every() here.
+  if (iterator === undefined) {
+    return true
+  }
+  else {
+    return !_.every(collection, function(item) {
+      return !iterator(item)
+    })
+  }
 }
 
 // Extend a given object with all the properties of the passed in
@@ -278,8 +313,24 @@ _.some = function(collection, iterator) {
 //   }, {
 //     bla: "even more stuff"
 //   }) // obj1 now contains key1, key2, key3 and bla
+  let me = {
+    favColor: 'green',
+    age: 22,
+    hairColor: 'brown'
+  }
+  let newMe = {
+    age: 23,
+    hairColor: 'grey',
+    favMovie: 'V for Vendetta'
+  }
 _.extend = function(obj) {
-
+  let objects = Array.prototype.slice.call(arguments)
+  objects.forEach(function(extObj) {
+    for (let key in extObj) {
+      obj[key] = extObj[key]
+    }
+  })
+  return obj
 }
 
 
